@@ -5,6 +5,7 @@ from nltk.corpus import stopwords
 import nltk
 import re
 from unidecode import unidecode
+from src.preprocessing.tools_preprocessing import *
 
 
 def preprocessing(df, verbose=True):
@@ -62,5 +63,10 @@ def preprocessing(df, verbose=True):
     # lemmatize text
     lemmatizer = FrenchLefffLemmatizer()
     df["text_lemma"] = [" ".join([lemmatizer.lemmatize(word) for word in doc.split()]) for doc in df["text_clean"]]
+
+    df["text_lemma_bigrame"] = [' '.join([word for word in generate_ngrams(doc, 2) if len(word) > 1]) for doc in
+                                  df["text_clean"]]
+    df["text_lemma_trigrame"] = [' '.join([word for word in generate_ngrams(doc, 3) if len(word) > 1]) for doc in
+                                   df["text_clean"]]
 
     return df
