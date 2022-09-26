@@ -42,3 +42,8 @@ def transform_dates(df, column="datetime"):
     df["hour"] = df[column].dt.hour
     df["minute"] = df[column].dt.minute
     return df
+
+def generate_ngrams(s, n):
+    tokens = [token for token in s.split(" ") if token != ""]
+    ngrams = zip(*[tokens[i:] for i in range(n)])
+    return ["_".join(ngram) for ngram in ngrams]
