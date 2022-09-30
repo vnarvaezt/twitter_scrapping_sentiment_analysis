@@ -14,8 +14,8 @@ def read_files(path="", verbose=False):
             tmp = re.search(r"tw_.*\b", filename)[0]
             if tmp:
                 files_tw.append(tmp)
-        except:
-            print("Something went wrong")
+        except TypeError:
+            pass
 
     data = pd.DataFrame()
     for file in files_tw:
@@ -42,6 +42,7 @@ def transform_dates(df, column="datetime"):
     df["hour"] = df[column].dt.hour
     df["minute"] = df[column].dt.minute
     return df
+
 
 def generate_ngrams(s, n):
     tokens = [token for token in s.split(" ") if token != ""]
