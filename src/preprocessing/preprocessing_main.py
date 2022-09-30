@@ -49,14 +49,17 @@ def preprocessing(df, verbose=True):
     # recover french stopwords
     nltk.download('stopwords')
     french_stopwords_list = stopwords.words('french')
-    other_stopwords = ["voila", "cette"]
+    other_stopwords = ["voila", "cette", "ukraine",
+                       "ukrain", "russie", "russe",
+                       "guerre", "aujourd", "hui",
+                       "ca"]
     all_stopwords_list = french_stopwords_list + other_stopwords
 
     df["text_clean"] = df['text_clean'].apply(
         lambda x: ' '.join([word for word in x.split() if word not in (
             all_stopwords_list)])
             )
-    # filter words with less than 2 syllables
+    # filter words with less than 1 syllables
     df["text_clean"] = df['text_clean'].apply(lambda x: " ".join([
         word for word in x.split() if len(word) > 1]))
 
