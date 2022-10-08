@@ -1,13 +1,20 @@
+from tools_extract import (
+    extract_tweets,
+    split_dates
+)
 import multiprocessing
-from multiprocessing import Pool
-from src.extract.tools_extract import *
 from datetime import datetime
+from multiprocessing import Pool
+import time
+import os
+print(os.getcwd())
+
 
 if __name__ == "__main__":
     start_date = datetime(2022, 2, 1, 7)
     # end_date = date.today()
-    #end_date = datetime(2022, 7, 2, 1, 7)
-    end_date = datetime(2022, 2, 2, 1, 7)
+    end_date = datetime(2022, 7, 2, 1, 7)
+    #end_date = datetime(2022, 2, 2, 1, 7)
 
     # end_date = datetime(2022, 3, 31, 00, 59)
     test = split_dates(start_date, end_date, 6, 30)
