@@ -15,7 +15,7 @@ def _datetime_range(start, end, delta):
 def _make_request(start_dt, start_epoch_time, end_epoch_time, max_count):
     # Creating list to append tweet data to
     tweets_list = []
-    search_query = f"#Ukraine since:{start_dt} since_time:{start_epoch_time} until_time:{end_epoch_time} lang:fr min_retweets:10"
+    search_query = f"#Ukraine since:{start_dt} since_time:{start_epoch_time} until_time:{end_epoch_time} lang:fr -min_retweets:10"
     # Using TwitterSearchScraper to scrape data and append tweets to list
     for i, tweet in enumerate(
         sns_twitter.TwitterSearchScraper(search_query).get_items()
@@ -66,7 +66,7 @@ def extract_tweets(
     max_count=50,
     max_lines=5000,
     time_window=29,
-    main_path="~/PycharmProjects/twitter_text_mining/data/test/",
+    main_path="~/PycharmProjects/twitter_text_mining/data/max_retweet_10/",
 ):
 
     """
