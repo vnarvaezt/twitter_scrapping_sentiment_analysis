@@ -6,7 +6,8 @@ from datetime import datetime
 if __name__ == "__main__":
     start_date = datetime(2022, 2, 1, 7)
     # end_date = date.today()
-    end_date = datetime(2022, 7, 2, 1, 7)
+    #end_date = datetime(2022, 7, 2, 1, 7)
+    end_date = datetime(2022, 2, 2, 1, 7)
 
     # end_date = datetime(2022, 3, 31, 00, 59)
     test = split_dates(start_date, end_date, 6, 30)
