@@ -66,7 +66,7 @@ def extract_tweets(
     max_count=50,
     max_lines=5000,
     time_window=29,
-    main_path="~/PycharmProjects/twitter_text_mining/data/max_retweet_10/",
+    main_path="~/work/twitter_text_mining/data/max_retweet_10/",
 ):
 
     """
