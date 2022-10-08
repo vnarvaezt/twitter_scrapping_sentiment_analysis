@@ -55,17 +55,17 @@ def preprocessing(df, verbose=True):
                        "ca"]
     all_stopwords_list = french_stopwords_list + other_stopwords
 
-    df["text_clean"] = df['text_clean'].apply(
+    df["text_clean"] = df["text_clean"].apply(
         lambda x: ' '.join([word for word in x.split() if word not in (
             all_stopwords_list)])
             )
     # filter words with less than 1 syllables
-    df["text_clean"] = df['text_clean'].apply(lambda x: " ".join([
+    df["text_clean"] = df["text_clean"].apply(lambda x: " ".join([
         word for word in x.split() if len(word) > 1]))
 
     # stem text
-    stemmer = SnowballStemmer('french')
-    df["text_stem"] = df['text_clean'].apply(lambda x: " ".join([
+    stemmer = SnowballStemmer("french")
+    df["text_stem"] = df["text_clean"].apply(lambda x: " ".join([
         stemmer.stem(word) for word in x.split()]))
 
     df["text_stem_bigrame"] = df['text_stem'].apply(lambda x: " ".join([
