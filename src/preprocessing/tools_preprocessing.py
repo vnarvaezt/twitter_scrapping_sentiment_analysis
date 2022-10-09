@@ -1,9 +1,9 @@
-import re
 import os
+import re
+
 import pandas as pd
 
 
-# todo : add file path
 def read_files(path="", verbose=False):
     print(os.getcwd())
     files = os.listdir(path)
@@ -21,9 +21,16 @@ def read_files(path="", verbose=False):
     for file in files_tw:
 
         _tx = pd.read_csv(f"{path}{file}", sep=" ")
-        _tx.columns = ['datetime', 'tweet_id', 'text',
-                       'username', 'like_count', 'retweet_count',
-                       'reply_count', 'quote_count']
+        _tx.columns = [
+            "datetime",
+            "tweet_id",
+            "text",
+            "username",
+            "like_count",
+            "retweet_count",
+            "reply_count",
+            "quote_count",
+        ]
         if verbose:
             print(f"{file} has {_tx.shape[0]} lines")
 

@@ -1,14 +1,16 @@
-if __name__ == "__main__":
-    start_date = datetime(2022, 2, 1, 7)
-    # end_date = date.today()
-    end_date = datetime(2022, 7, 2, 1, 7)
-    #end_date = datetime(2022, 2, 2, 1, 7)
+import os
 
-    # end_date = datetime(2022, 3, 31, 00, 59)
-    test = split_dates(start_date, end_date, 6, 30)
-    start = time.time()
-    with Pool(multiprocessing.cpu_count() - 2) as p:
-        p.map(extract_tweets, test)
-    end = time.time()
-    delta = end - start
-    print(f"took {delta:.2} seconds using multiprocessing")
+from src.preprocessing.preprocessing import preprocessing
+from src.preprocessing.tools_preprocessing import read_files, transform_dates
+
+if __name__ == "__main__":
+    path = "C:/Users/vnarv/PycharmProjects/twitter_text_mining/"
+    raw_data = read_files(os.path.join(path, "data/max_retweet_10/"))
+    print(raw_data.shape)
+    data = transform_dates(raw_data)
+    data = preprocessing(data)
+    data.to_csv(
+        "~/PycharmProjects/twitter_text_mining/data/max_retweet_10/df_prepro_V3.csv",
+        sep=";",
+        index=False,
+    )

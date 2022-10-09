@@ -1,5 +1,3 @@
-import re
-
 import nltk
 from french_lefff_lemmatizer.french_lefff_lemmatizer import \
     FrenchLefffLemmatizer
@@ -75,6 +73,7 @@ def preprocessing(df, verbose=True):
         "va",
         "etre",
         "fait",
+        "faire",
         "alors",
         "leurs",
         "vers",
@@ -104,6 +103,10 @@ def preprocessing(df, verbose=True):
         "situation",
         "depuis",
         "debut",
+        "etait",
+        "entre",
+        "moi"
+
     ]
     all_stopwords_list = french_stopwords_list + other_stopwords
 
