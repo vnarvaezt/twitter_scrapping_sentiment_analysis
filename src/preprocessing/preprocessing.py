@@ -5,6 +5,7 @@ from langdetect import detect
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 from unidecode import unidecode
+import sys
 
 from src.preprocessing.tools_preprocessing import *
 
@@ -34,9 +35,20 @@ def preprocessing(df, verbose=True):
     df["text_clean"] = df["text_clean"].apply(lambda x: unidecode(x))
     # replace all non alphabetic chars with an space
     df["text_clean"] = df["text_clean"].apply(lambda x: re.sub(r"[^a-z]+", " ", x))
+    # delete empty tweets
+    df = df[(df["text_clean"] != " ")]
 
     # detect language
     tweet_lg = []
+
+    for row in df["text_clean"]:
+        try:
+            language = detect(row)
+        except:
+            language = "error"
+            print(f"This row throws and error:'{row}'")
+            sys.exit("found")
+
     for row in df["text_clean"]:
         tw_lang = detect(row)
         tweet_lg.append(tw_lang)
@@ -87,7 +99,9 @@ def preprocessing(df, verbose=True):
         "apres",
         "avoir",
         "reseaux"
+        #"reseau",
         "sociaux",
+        #"social",
         "suivez",
         "direct",
         "peut",
@@ -115,7 +129,7 @@ def preprocessing(df, verbose=True):
             [word for word in x.split() if word not in all_stopwords_list]
         )
     )
-    # filter words with less than 1 syllables
+    # filter words with less than 1 syllable
     df["text_clean"] = df["text_clean"].apply(
         lambda x: " ".join([word for word in x.split() if len(word) > 1])
     )

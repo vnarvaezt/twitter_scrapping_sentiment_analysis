@@ -1,4 +1,4 @@
-from tools_extract import (
+from src.extract.tools_extract import (
     extract_tweets,
     split_dates
 )
@@ -22,5 +22,5 @@ if __name__ == "__main__":
     with Pool(multiprocessing.cpu_count() - 2) as p:
         p.map(extract_tweets, test)
     end = time.time()
-    delta = end - start
-    print(f"took {delta:.2} seconds using multiprocessing")
+    delta = (end - start)/60
+    print(f"Extraction took {delta:.2} minutes using multiprocessing")
