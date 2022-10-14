@@ -12,12 +12,12 @@ if __name__ == "__main__":
 
     start = time.time()
     # read files
-    df_1 = read_files(os.path.join(path, "data/test/"))
-    print(df_1.shape)
-    df_2 = read_files(os.path.join(path, "data/max_retweet_10/"))
-    print(df_2.shape)
-    raw_data = pd.concat([df_1, df_2], axis=0)
+    raw_data = read_files(os.path.join(path, "data/min_retweet_10/"))
     print(raw_data.shape)
+    #df_2 = read_files(os.path.join(path, "data/max_retweet_10/"))
+    #print(df_2.shape)
+    #raw_data = pd.concat([df_1, df_2], axis=0)
+    #print(raw_data.shape)
 
     # drop_duplicates
     raw_data = raw_data.drop_duplicates(["text", "username"])
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     data = preprocessing(data)
     # save resulting df
     data.to_csv(
-        "~/PycharmProjects/twitter_text_mining/data/max_retweet_10/df_prepro_complet.csv",
+        "~/PycharmProjects/twitter_text_mining/data/min_retweet_10/df_prepro.csv",
         sep=";",
         index=False,
     )
