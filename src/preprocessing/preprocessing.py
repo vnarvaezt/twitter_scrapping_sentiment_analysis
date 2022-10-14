@@ -41,18 +41,6 @@ def preprocessing(df, verbose=True):
     # detect language
     tweet_lg = []
 
-    for row in df["text_clean"]:
-        try:
-            language = detect(row)
-        except:
-            language = "error"
-            print(f"This row throws and error:'{row}'")
-            sys.exit("found")
-
-    for row in df["text_clean"]:
-        tw_lang = detect(row)
-        tweet_lg.append(tw_lang)
-
     # store language into a column
     df["language"] = tweet_lg
     if verbose:
@@ -129,7 +117,7 @@ def preprocessing(df, verbose=True):
             [word for word in x.split() if word not in all_stopwords_list]
         )
     )
-    # filter words with less than 1 syllable
+    # filter words with less than 1 syllables
     df["text_clean"] = df["text_clean"].apply(
         lambda x: " ".join([word for word in x.split() if len(word) > 1])
     )

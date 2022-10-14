@@ -22,5 +22,6 @@ if __name__ == "__main__":
     with Pool(multiprocessing.cpu_count() - 2) as p:
         p.map(extract_tweets, test)
     end = time.time()
+
     delta = (end - start)/60
     print(f"Extraction took {delta:.2} minutes using multiprocessing")
