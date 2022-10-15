@@ -88,6 +88,7 @@ stopwords = {
     "york",
     "time",
     "armeedeterre",
+    "ete",
     "lair",
     "marinenationale",
     "gouvernementfr",

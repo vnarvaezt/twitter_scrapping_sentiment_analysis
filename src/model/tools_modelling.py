@@ -66,7 +66,7 @@ def compute_lda(dictionary, corpus, texts, num_topics):
     return lda_model, coherence_lda
 
 
-def graph_nb_topics(start, limit, step, coherence_values, alias):
+def _graph_nb_topics(start, limit, step, coherence_values, alias):
     x = range(start, limit, step)
 
     fig = plt.figure()
@@ -89,7 +89,7 @@ def search_nb_topics(dictionary, corpus, texts, start, limit, step, alias):
         coherence_values.append(model[1])
 
     # show graph
-    graph_nb_topics(start, limit, step, coherence_values, alias)
+    _graph_nb_topics(start, limit, step, coherence_values, alias)
 
     best_values = [
         index
