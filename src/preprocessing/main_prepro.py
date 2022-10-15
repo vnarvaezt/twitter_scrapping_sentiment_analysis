@@ -1,12 +1,8 @@
 import os
-
 import time
-import pandas as pd
 
-#from langdetect import detect, DetectorFactory
 from src.preprocessing.preprocessing import preprocessing
 from src.preprocessing.tools_preprocessing import read_files, transform_dates
-
 
 if __name__ == "__main__":
     path = "C:/Users/vnarv/PycharmProjects/twitter_text_mining/"
@@ -15,12 +11,12 @@ if __name__ == "__main__":
     # read files
     raw_data = read_files(os.path.join(path, "data/min_retweet_10/"))
     print(raw_data.shape)
-    #df_2 = read_files(os.path.join(path, "data/max_retweet_10/"))
-    #print(df_2.shape)
-    #raw_data = pd.concat([df_1, df_2], axis=0)
-    #print(raw_data.shape)
+    # df_2 = read_files(os.path.join(path, "data/max_retweet_10/"))
+    # print(df_2.shape)
+    # raw_data = pd.concat([df_1, df_2], axis=0)
+    # print(raw_data.shape)
 
-    # drop_duplicates
+    # drop repeated tweets no matter the date
     raw_data = raw_data.drop_duplicates(["text", "username"])
     print(f"Shape after dropping duplicates {raw_data.shape}")
 
@@ -36,6 +32,6 @@ if __name__ == "__main__":
     )
 
     end = time.time()
-    delta = (end - start)/60
+    delta = (end - start) / 60
 
     print(f"Preprocessing took {delta:.2} minutes")

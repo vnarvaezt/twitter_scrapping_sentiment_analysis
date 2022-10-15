@@ -2,12 +2,13 @@ import nltk
 from french_lefff_lemmatizer.french_lefff_lemmatizer import \
     FrenchLefffLemmatizer
 from langdetect import detect
+import re
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 from unidecode import unidecode
-import sys
 
-from src.preprocessing.tools_preprocessing import *
+from src.preprocessing.stopwords import stopwords as other_stopwords
+from src.preprocessing.tools_preprocessing import generate_ngrams
 
 
 def preprocessing(df, verbose=True):
@@ -22,7 +23,7 @@ def preprocessing(df, verbose=True):
     df["arrobas"] = df["text"].apply(
         lambda y: [x.group() for x in re.finditer(r"@[a-zA-Z]+", y)]
     )
-    # replace https links with "link"
+    # find https links and replace by ""
     regex_http = (
         r"([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?"
     )
@@ -40,6 +41,9 @@ def preprocessing(df, verbose=True):
 
     # detect language
     tweet_lg = []
+    for row in df["text_clean"]:
+        tw_lang = detect(row)
+        tweet_lg.append(tw_lang)
 
     # store language into a column
     df["language"] = tweet_lg
@@ -56,61 +60,7 @@ def preprocessing(df, verbose=True):
     # recover french stopwords
     nltk.download("stopwords")
     french_stopwords_list = stopwords.words("french")
-    other_stopwords = [
-        "voila",
-        "cette",
-        "ukraine",
-        "ukrain",
-        "russie",
-        "russe",
-        "guerre",
-        "aujourd",
-        "hui",
-        "ca",
-        "plus",
-        "comme",
-        "peut",
-        "va",
-        "etre",
-        "fait",
-        "faire",
-        "alors",
-        "leurs",
-        "vers",
-        "juin",
-        "dont",
-        "soir",
-        "lopinion",
-        "fr",
-        "faut",
-        "mettre",
-        "apres",
-        "avoir",
-        "reseaux"
-        #"reseau",
-        "sociaux",
-        #"social",
-        "suivez",
-        "direct",
-        "peut",
-        "etre",
-        "peut",
-        "dire",
-        "doit",
-        "être",
-        "chaque",
-        "jour",
-        "plus",
-        "point",
-        "situation",
-        "depuis",
-        "debut",
-        "etait",
-        "entre",
-        "moi"
-
-    ]
-    all_stopwords_list = french_stopwords_list + other_stopwords
+    all_stopwords_list = french_stopwords_list + list(other_stopwords)
 
     df["text_clean"] = df["text_clean"].apply(
         lambda x: " ".join(
@@ -128,11 +78,11 @@ def preprocessing(df, verbose=True):
         lambda x: " ".join([stemmer.stem(word) for word in x.split()])
     )
 
-    df["text_stem_bigrame"] = df["text_stem"].apply(
+    df["text_stem_bigram"] = df["text_stem"].apply(
         lambda x: " ".join([word for word in generate_ngrams(x, 2) if len(word) > 1])
     )
 
-    df["text_stem_trigrame"] = df["text_stem"].apply(
+    df["text_stem_trigram"] = df["text_stem"].apply(
         lambda x: " ".join([word for word in generate_ngrams(x, 3) if len(word) > 1])
     )
 
@@ -142,11 +92,11 @@ def preprocessing(df, verbose=True):
         lambda x: " ".join([lemmatizer.lemmatize(word) for word in x.split()])
     )
 
-    df["text_lemma_bigrame"] = df["text_lemma"].apply(
+    df["text_lemma_bigram"] = df["text_lemma"].apply(
         lambda x: " ".join([word for word in generate_ngrams(x, 2) if len(word) > 1])
     )
 
-    df["text_lemma_trigrame"] = df["text_lemma"].apply(
+    df["text_lemma_trigram"] = df["text_lemma"].apply(
         lambda x: " ".join([word for word in generate_ngrams(x, 3) if len(word) > 1])
     )
 
