@@ -71,7 +71,10 @@ def preprocessing(df, verbose=True):
     df["text_clean"] = df["text_clean"].apply(
         lambda x: " ".join([word for word in x.split() if len(word) > 1])
     )
-
+    # drop duplicates
+    print(f"Shape before dropping dups: {df.shape}")
+    df = df.drop_duplicates(["text_clean", "username"])
+    print(f"Shape after dropping dups: {df.shape}")
     # stem text
     stemmer = SnowballStemmer("french")
     df["text_stem"] = df["text_clean"].apply(

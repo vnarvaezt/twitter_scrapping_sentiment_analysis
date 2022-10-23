@@ -194,7 +194,7 @@ def graph_topics(lda_result, df_dominant_topics, alias):
         ax_twin.set_ylim(0, (all_["weight"].max() + 0.02))
         ax.set_ylim(0, all_["word_count"].max() + 100)
         ax.set_title(
-            "Topic: " + str(all_["topic"].unique()), fontsize=16  # color=cols[i],
+            f"Topic: {topic}", fontsize=16  # color=cols[i],
         )
         ax.tick_params(axis="y", left=False)
         ax.set_xticklabels(
@@ -241,5 +241,5 @@ def compute_word_cloud(df, text, alias):
         plt.gca().imshow(cloud, interpolation="bilinear")
         plt.gca().set_title("Topic " + str(i), fontdict=dict(size=16))
         plt.gca().axis("off")
-
-    plt.savefig(f"output/img/world_cloud_{alias}.png")
+    nb_topics = df["dominant_topic"].max() + 1
+    plt.savefig(f"output/img/world_cloud_{alias}_{nb_topics}.png")
