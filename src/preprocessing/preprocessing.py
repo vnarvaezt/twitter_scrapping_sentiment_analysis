@@ -38,6 +38,8 @@ def preprocessing(df, verbose=True):
     df["text_clean"] = df["text_clean"].apply(lambda x: re.sub(r"[^a-z]+", " ", x))
     # delete empty tweets
     df = df[(df["text_clean"] != " ")]
+    # delete any nan values
+    df = df[~df["text_clean"].isna()]
 
     # detect language
     tweet_lg = []
