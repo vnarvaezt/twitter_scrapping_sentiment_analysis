@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     start = time.time()
     # read files
-    raw_data = read_files(os.path.join(path, "data/min_retweet_10/"))
+    raw_data = read_files(os.path.join(path, "data/min_retweet_3/"))
     print(raw_data.shape)
     # df_2 = read_files(os.path.join(path, "data/max_retweet_10/"))
     # print(df_2.shape)
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     data = preprocessing(data)
     # save resulting df
     data.to_csv(
-        "~/PycharmProjects/twitter_text_mining/data/min_retweet_10/df_prepro.csv",
+        "~/PycharmProjects/twitter_text_mining/data/min_retweet_3/df_prepro.csv",
         sep=";",
         index=False,
     )
