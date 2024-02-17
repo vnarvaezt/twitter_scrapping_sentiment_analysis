@@ -1,7 +1,8 @@
-import streamlit as st
-import pandas as pd
 import os
+
+import pandas as pd
 import plotly.express as px
+import streamlit as st
 
 st.header(
     "Evolution du nombre de tweets (retweetés au moins 3 fois), par jour, par topic"
@@ -10,14 +11,19 @@ st.sidebar.markdown("# Tweets evolutions")
 st.write("")
 
 # import des données
-#path = "C:\\Users\\VIVAN Sabrina"
-#os.chdir(path)
-df_fr = pd.read_csv("streamlit_app/df_fr.csv", sep=",",)
+# path = "C:\\Users\\VIVAN Sabrina"
+# os.chdir(path)
+df_fr = pd.read_csv(
+    "streamlit_app/df_fr.csv",
+    sep=",",
+)
 df_gouv = pd.read_csv("streamlit_app/df_gouv.csv", sep=",")
-df_topic_lemma3 = pd.read_csv("streamlit_app/dominant_topics_lemma_3topics.csv",
+df_topic_lemma3 = pd.read_csv(
+    "streamlit_app/dominant_topics_lemma_3topics.csv",
     sep=";",
 )
-tweet_date = pd.read_csv("streamlit_app/tweet_date.csv",
+tweet_date = pd.read_csv(
+    "streamlit_app/tweet_date.csv",
     sep=",",
 )
 

@@ -1,6 +1,7 @@
-from datetime import timedelta
 import re
 import time
+from datetime import timedelta
+
 import pandas as pd
 import snscrape.modules.twitter as sns_twitter
 
@@ -68,7 +69,6 @@ def extract_tweets(
     time_window=29,
     main_path="~/work/twitter_text_mining/data/max_retweet_10/",
 ):
-
     """
     Perimeter : time period
     max_count : Max tweets per time period

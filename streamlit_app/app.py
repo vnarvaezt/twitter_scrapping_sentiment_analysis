@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
 
-
 # (nom des onglets sur le bandeau de gauche = nom des fichiers .py))
 # titre sur le bandeau de gauche
 st.sidebar.markdown("# Présentation")

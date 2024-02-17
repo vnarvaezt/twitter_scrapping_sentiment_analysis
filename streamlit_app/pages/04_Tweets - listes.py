@@ -1,15 +1,17 @@
-import streamlit as st
+import os
+
 import pandas as pd
 import plotly.express as px
-import os
+import streamlit as st
 
 st.header("Liste des tweets les plus et moins contribuants par topics")
 st.sidebar.markdown("# Tweets lists")
 
 # import des données
-#path = "C:\\Users\\VIVAN Sabrina"
-#os.chdir(path)
-df_topic_lemma3 = pd.read_csv("streamlit_app/dominant_topics_lemma_3topics.csv",
+# path = "C:\\Users\\VIVAN Sabrina"
+# os.chdir(path)
+df_topic_lemma3 = pd.read_csv(
+    "streamlit_app/dominant_topics_lemma_3topics.csv",
     sep=";",
 )
 # tweets les plus et moins contribuants par topics

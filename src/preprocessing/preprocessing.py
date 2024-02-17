@@ -1,8 +1,9 @@
+import re
+
 import nltk
 from french_lefff_lemmatizer.french_lefff_lemmatizer import \
     FrenchLefffLemmatizer
 from langdetect import detect
-import re
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 from unidecode import unidecode

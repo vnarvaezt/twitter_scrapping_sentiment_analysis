@@ -189,13 +189,13 @@ def graph_topics(lda_result, df_dominant_topics, alias):
             label="Weights",
         )
 
-        ax.set_ylabel("Word Count",)
+        ax.set_ylabel(
+            "Word Count",
+        )
         # color=cols[i])
         ax_twin.set_ylim(0, (all_["weight"].max() + 0.02))
         ax.set_ylim(0, all_["word_count"].max() + 100)
-        ax.set_title(
-            f"Topic: {topic}", fontsize=16  # color=cols[i],
-        )
+        ax.set_title(f"Topic: {topic}", fontsize=16)  # color=cols[i],
         ax.tick_params(axis="y", left=False)
         ax.set_xticklabels(
             all_.loc[all_["topic"] == topic, "keyword"],

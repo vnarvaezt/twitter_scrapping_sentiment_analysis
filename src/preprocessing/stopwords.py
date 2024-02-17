@@ -31,12 +31,10 @@ stopwords = {
     "mettre",
     "apres",
     "avoir",
-    "reseaux"
-    "reseau",
+    "reseaux" "reseau",
     "sociaux",
     "social",
-    "notredefense"
-    "suivez",
+    "notredefense" "suivez",
     "direct",
     "peut",
     "etre",
@@ -130,5 +128,5 @@ stopwords = {
     "flash",
     "abonnez",
     "rejoindre",
-    "aventure"
+    "aventure",
 }
