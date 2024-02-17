@@ -1,4 +1,4 @@
-# Sentiment anylsis for tweets containing #Ukraine
+# Sentiment analysis for tweets containing #Ukraine
 LDA topic modeling was used for sentiment classification on tweets published between 1st febrary 2022 to 30th june 2022.
 
 https://github.com/vnarvaezt/twitter_scrapping_sentiment_analysis/assets/33680762/436ee386-4cac-4295-96b3-1a54a40b432f
